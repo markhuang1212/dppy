@@ -9,7 +9,7 @@ def compute_median(data: list[int]) -> int:
     """
     Computes the median of a list of numbers
     """
-    return data[(len(data) - 1) // 2]
+    return data[len(data) // 2]
 
 
 def rank_error_signed(data: list[int], x: int) -> int:
