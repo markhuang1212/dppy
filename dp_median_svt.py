@@ -10,11 +10,11 @@ class DpMedianSvt(DpMedian):
     def count(self, data: list[int], target: int) -> float:
         return np.random.laplace(0, 4.0/self.epsilon) + bisect_right(data, target)
 
-    def getT(self, N: int) -> float:
+    def get_t(self, N: int) -> float:
         return np.random.laplace(0, 2.0/self.epsilon) + N//2
 
     def answer(self, data: list[int]) -> int:
-        T = self.getT(len(data))
+        T = self.get_t(len(data))
         for i in range(self.U):
             if self.count(data, i) >= T:
                 return i

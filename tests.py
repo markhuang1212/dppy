@@ -5,6 +5,7 @@ Unit Testing
 import unittest
 
 import random
+from dp_median_inverse_sensitivity import DpMedianInverseSensitivity
 from dp_median_svt import DpMedianSvt
 
 from utils import compute_median, rank_error
@@ -56,15 +57,20 @@ class TestMedianUtil(unittest.TestCase):
         print("Smooth Sensitivity", ans)
         ans = DpMedianSvt(0.1).answer(data)
         print("SVT", ans)
+        ans = DpMedianInverseSensitivity(0.1).answer(data)
+        print("Inverse Sensitivity", ans)
 
-    def test_Js(self):
+    def test_js(self):
+        """
+        Test the j*(i) function
+        """
         dpss = DpMedianSmoothSensitivity(0.1)
         data = []
         for _ in range(10):
             data.append(random.randint(1, 10000))
         data.sort()
-        print(dpss.smoothSensitivity(data))
-        print(dpss.smoothSensitibityBruteForce(data))
+        # print(dpss.smoothSensitivity(data))
+        # print(dpss.smoothSensitibityBruteForce(data))
 
 
 if __name__ == '__main__':

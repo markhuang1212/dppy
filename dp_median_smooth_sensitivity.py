@@ -30,7 +30,7 @@ class DpMedianSmoothSensitivity(DpMedian):
         ret = sys.float_info.min
         for i in range(0, n//2+1):
             j = js[i]
-            v = (data[j]-data[i])*math.exp(-self.epsilon*(j-i+1))
+            v = (data[j]-data[i])*math.exp(self.epsilon*(i-j-j))
             if v > ret:
                 ret = v
         return ret
@@ -49,8 +49,8 @@ class DpMedianSmoothSensitivity(DpMedian):
         return ret
 
     def answer(self, data: list[int]) -> int:
-        ss = self.smoothSensitivity(data)
-        # ss = self.smoothSensitibityBruteForce(data)
+        # ss = self.smoothSensitivity(data)
+        ss = self.smoothSensitibityBruteForce(data)
         med = utils.compute_median(data)
         noise = np.random.normal(0, ss/self.epsilon)
         return int(med + noise)
