@@ -5,6 +5,7 @@ Unit Testing
 import unittest
 
 import random
+from dp_median_svt import DpMedianSvt
 
 from utils import compute_median, rank_error
 from dp_median_binary_search import DpMedianBinarySearch
@@ -48,9 +49,13 @@ class TestMedianUtil(unittest.TestCase):
         """
         data = []
         for i in range(1, 1000):
-            data.append(i*10)
+            data.append(i*100)
         ans = DpMedianBinarySearch(0.1).answer(data)
+        print("Binary Search", ans)
         ans = DpMedianSmoothSensitivity(0.1).answer(data)
+        print("Smooth Sensitivity", ans)
+        ans = DpMedianSvt(0.1).answer(data)
+        print("SVT", ans)
 
     def test_Js(self):
         dpss = DpMedianSmoothSensitivity(0.1)

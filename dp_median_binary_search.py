@@ -3,11 +3,11 @@ from dp_median import DpMedian
 from bisect import bisect_right
 from math import log2
 
+
 class DpMedianBinarySearch(DpMedian):
 
-    def __init__(self, epsilon: float):
-        super().__init__()
-        self.epsilon = epsilon
+    def __init__(self, epsilon: float, U=(1 << 32)-1):
+        super().__init__(epsilon, U)
         self.epsilon_op = epsilon / log2(self.U)
 
     def count(self, data: list[int], target: int) -> float:

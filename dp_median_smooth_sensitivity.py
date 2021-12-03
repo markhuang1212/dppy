@@ -8,9 +8,8 @@ from dp_median import DpMedian
 
 class DpMedianSmoothSensitivity(DpMedian):
 
-    def __init__(self, epsilon: float):
-        super().__init__()
-        self.epsilon = epsilon
+    def __init__(self, epsilon: float, U=(1 << 32)-1):
+        super().__init__(epsilon, U)
 
     def computeJs(self, data: list[int], s: int, t: int, L: int, R: int) -> list[int]:
         if s > t:
