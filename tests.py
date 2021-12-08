@@ -48,9 +48,7 @@ class TestMedianUtil(unittest.TestCase):
         """
         Test DP Median Binary Search
         """
-        data = []
-        for i in range(1, 1000):
-            data.append(i*100)
+        data = uniform_rand_array(1000, 500000)
         ans = DpMedianBinarySearch(0.1).answer(data)
         print("Binary Search", ans)
         ans = DpMedianSmoothSensitivity(0.1).answer(data)
