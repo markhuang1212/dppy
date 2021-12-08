@@ -8,7 +8,7 @@ import random
 from dp_median_inverse_sensitivity import DpMedianInverseSensitivity
 from dp_median_svt import DpMedianSvt
 
-from utils import compute_median, rank_error
+from utils import compute_median, rank_error, uniform_rand_array
 from dp_median_binary_search import DpMedianBinarySearch
 from dp_median_smooth_sensitivity import DpMedianSmoothSensitivity
 
@@ -65,12 +65,11 @@ class TestMedianUtil(unittest.TestCase):
         Test the j*(i) function
         """
         dpss = DpMedianSmoothSensitivity(0.1)
-        data = []
-        for _ in range(10):
-            data.append(random.randint(1, 10000))
-        data.sort()
-        # print(dpss.smoothSensitivity(data))
-        # print(dpss.smoothSensitibityBruteForce(data))
+        data = uniform_rand_array(1000, 10000)
+        # data = [10, 20, 30, 40, 50, 60, 70, 80, 90]
+        ss = dpss.smoothSensitivity(data)
+        ssbf = dpss.smoothSensitibityBruteForce(data)
+        self.assertAlmostEqual(ss, ssbf)
 
 
 if __name__ == '__main__':

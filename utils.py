@@ -2,6 +2,8 @@
 Utility Functions
 """
 
+import random
+
 from bisect import bisect_left, bisect_right
 
 
@@ -39,3 +41,10 @@ def absolute_error(data: list[int], x: int) -> int:
     """
     return abs(x - compute_median(data))
     
+def uniform_rand_array(n: int, U: int) -> list[int]:
+    """
+    Generates a random array of integers in the range [0, U)
+    """
+    ret =  [random.randint(0, U) for _ in range(n)]
+    ret.sort()
+    return ret

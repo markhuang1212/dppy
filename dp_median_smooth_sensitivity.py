@@ -15,22 +15,24 @@ class DpMedianSmoothSensitivity(DpMedian):
         if s > t:
             return []
         m = (s+t)//2
-        idx = 0
-        tmp = sys.float_info.min
+        idx = -1
+        tmp = 0.0
         for i in range(L, R+1):
-            v = (data[i] - data[m]) * math.exp(self.epsilon * (i - m + 1))
+            v = (data[i] - data[m]) * math.exp(-self.epsilon * (i - m))
             if(v > tmp):
                 tmp = v
                 idx = i
+        assert idx != -1
         return self.computeJs(data, s, m-1, L, idx) + [idx] + self.computeJs(data, m+1, t, idx, R)
 
     def smoothSensitivity(self, data: list[int]) -> float:
         n = len(data)
-        js = self.computeJs(data, 0, n-1, 0, n-1)
-        ret = sys.float_info.min
+        js = self.computeJs(data, 0, n//2, n//2, n-1)
+        ret = 0.0
         for i in range(0, n//2+1):
             j = js[i]
-            v = (data[j]-data[i])*math.exp(self.epsilon*(i-j-j))
+            assert j >= n//2
+            v = (data[j]-data[i])*math.exp(-self.epsilon*(j - i))
             if v > ret:
                 ret = v
         return ret
@@ -38,12 +40,15 @@ class DpMedianSmoothSensitivity(DpMedian):
     def smoothSensitibityBruteForce(self, data: list[int]) -> float:
         n = len(data)
         m = n//2
-        ret = sys.float_info.min
-        for k in range(0, n):
+        ret = 0.0
+        for k in range(0, n+1):
             for t in range(0, k+1):
-                if m+t < n and m+t-k-1 >= 0:
-                    v = (data[m+t]-data[m+t-k-1]) * \
-                        math.exp(- k * self.epsilon)
+                if m+t < n and m+t-k >= 0:
+                    j = m+t
+                    i = m+t-k
+                    assert i <= n//2
+                    assert j >= n//2
+                    v = (data[j]-data[i]) * math.exp(- k * self.epsilon)
                     if v > ret:
                         ret = v
         return ret
