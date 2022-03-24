@@ -3,6 +3,7 @@ Utility Functions
 """
 
 import random
+import numpy as np
 
 from bisect import bisect_left, bisect_right
 
@@ -46,5 +47,16 @@ def uniform_rand_array(n: int, U: int) -> list[int]:
     Generates a random array of integers in the range [0, U)
     """
     ret =  [random.randint(0, U) for _ in range(n)]
+    ret.sort()
+    return ret
+
+def normal_rand_array(N: int, U: int, mean: float, std: float) -> list[int]:
+    ret = []
+    while len(ret) < N:
+        x = np.random.normal();
+        x = x * std + mean
+        x = int(x)
+        if 0 <= x and x <= U:
+            ret.append(x)
     ret.sort()
     return ret

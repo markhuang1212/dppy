@@ -14,8 +14,7 @@ class DpMedianBinarySearch(DpMedian):
         """
         number of i s.t. list[i] <= target
         """
-        noise = np.random.normal(0, 0.5/self.epsilon_op)
-        # print(noise)
+        noise = np.random.laplace(0, 1.0/self.epsilon_op)
         return noise + bisect_right(data, target)
 
     def answer(self, data: list[int]) -> int:

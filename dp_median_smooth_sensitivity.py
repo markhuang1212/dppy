@@ -5,7 +5,6 @@ import numpy as np
 import utils
 from dp_median import DpMedian
 
-
 class DpMedianSmoothSensitivity(DpMedian):
 
     def __init__(self, epsilon: float, U=(1 << 32)-1):
@@ -54,8 +53,8 @@ class DpMedianSmoothSensitivity(DpMedian):
         return ret
 
     def answer(self, data: list[int]) -> int:
-        # ss = self.smoothSensitivity(data)
-        ss = self.smoothSensitibityBruteForce(data)
+        ss = self.smoothSensitivity(data)
+        # ss = self.smoothSensitibityBruteForce(data)
         med = utils.compute_median(data)
         noise = np.random.normal(0, ss/self.epsilon)
         return int(med + noise)
