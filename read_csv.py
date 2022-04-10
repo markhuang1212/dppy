@@ -1,13 +1,13 @@
 from asyncore import read
 import csv
 
-def read_book_csv(num_of_books = 100):
+def read_book_csv(num_of_books = 100) -> list[list[int]]:
     file = open("Books.csv")
     reader = csv.reader(file)
-    books = []
+    books: list[int] = []
 
     line = next(reader)
-    curr_book = [float(line[2])]
+    curr_book = [int(float(line[2]))]
     curr_book_id = line[0]
 
     while True:
@@ -23,7 +23,7 @@ def read_book_csv(num_of_books = 100):
             curr_book = []
             curr_book_id = line[0]
 
-        curr_book.append(line[2])
+        curr_book.append(int(float(line[2])))
 
-books = read_book_csv(100)
+books = read_book_csv(10000)
 # print(books)

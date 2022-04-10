@@ -15,7 +15,7 @@ class DpMedianSmoothSensitivity(DpMedian):
             return []
         m = (s+t)//2
         idx = -1
-        tmp = 0.0
+        tmp = float('-inf')
         for i in range(L, R+1):
             v = (data[i] - data[m]) * math.exp(-self.epsilon * (i - m))
             if(v > tmp):

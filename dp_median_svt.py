@@ -31,3 +31,4 @@ class DpMedianSvt(DpMedian):
         for i in range(self.U):
             if self.count(data, i) >= T:
                 return i
+        return self.U
