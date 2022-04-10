@@ -4,6 +4,12 @@ Repository for the FYT project
 
 ## Installation
 
+For the first step, download the file `Books.csv` by doing
+
+```bash
+wget -O Books.csv https://hmpg.dev/books.csv
+```
+
 * Docker
 * VSCode
 * VSCode - Remote Container Extension

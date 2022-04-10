@@ -1,4 +1,3 @@
-from asyncore import read
 import csv
 
 def read_book_csv(num_of_books = 100) -> list[list[int]]:
@@ -26,4 +25,3 @@ def read_book_csv(num_of_books = 100) -> list[list[int]]:
         curr_book.append(int(float(line[2])))
 
 books = read_book_csv(10000)
-# print(books)
