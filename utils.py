@@ -2,10 +2,10 @@
 Utility Functions
 """
 
+from bisect import bisect_left, bisect_right
+
 import random
 import numpy as np
-
-from bisect import bisect_left, bisect_right
 
 
 def compute_median(data: list[int]) -> int:

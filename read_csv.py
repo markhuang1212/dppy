@@ -25,3 +25,10 @@ def read_book_csv(num_of_books = 100) -> list[list[int]]:
         curr_book.append(int(float(line[2])))
 
 books = read_book_csv(10000)
+
+# n = 0
+# for i in range(len(books)):
+#     n += len(books[i])
+# print(float(n)/len(books))
+
+# print(books)

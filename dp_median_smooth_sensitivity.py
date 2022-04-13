@@ -57,4 +57,4 @@ class DpMedianSmoothSensitivity(DpMedian):
         # ss = self.smoothSensitibityBruteForce(data)
         med = utils.compute_median(data)
         noise = np.random.normal(0, ss/self.epsilon)
-        return int(med + noise)
+        return int(round(med + noise))
