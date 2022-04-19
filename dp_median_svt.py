@@ -32,3 +32,33 @@ class DpMedianSvt(DpMedian):
             if self.count(data, i) >= T:
                 return i
         return self.U
+
+class DpMedianSvtWithGap(DpMedian):
+    def __init__(self, epsilon: float, U: int = 10**6):
+        super().__init__(epsilon, U)
+
+    # Given by Dong
+    def LapNoise(self):
+        a = random.uniform(0, 1)
+        b = math.log(1/(1-a))
+        c = random.uniform(0, 1)
+        if c > 0.5:
+            return b
+        else:
+            return -b
+
+    def count(self, data: list[int], target: int) -> float:
+        noise = np.random.laplace(0, 4.0/self.epsilon)
+        return noise + bisect_right(data, target)
+
+    def get_t(self, N: int) -> float:
+        return np.random.laplace(N//2, 2.0/self.epsilon)
+
+    def answer(self, data: list[int], gap: int = 1) -> int:
+        T = self.get_t(len(data))
+        i = 0
+        while i < self.U:
+            if self.count(data, i) >= T:
+                return i
+            i = i + gap
+        return self.U
