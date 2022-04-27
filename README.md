@@ -10,13 +10,19 @@ For the first step, download the file `Books.csv` by doing
 wget -O Books.csv https://hmpg.dev/books.csv
 ```
 
-To run the project locally, you need
+# Run in docker
+
+You need
 
 * Docker
 * VSCode
 * VSCode - Remote Container Extension
 
-Follow the instruction when opened in VSCode. All dependencies will be installed automatically upon first run.
+VSCode will prompt you to open the project in a docker container. All dependencies will be installed automatically upon first run.
+
+# Install Dependencies Manually
+
+Refer to the `.devcontainer` folder to see what dependencies are needed to run the project.
 
 ## Project Structure
 
